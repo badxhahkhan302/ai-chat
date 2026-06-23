@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head><title>AI Assistant</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0a0a;font-family:Arial;min-height:100vh;display:flex;justify-content:center;align-items:center;padding:20px}
+.container{background:#111;border:1px solid #222;border-radius:20px;padding:40px;max-width:700px;width:100%}
+.logo{text-align:center;margin-bottom:30px}
+.logo h1{color:#fff;font-size:36px;font-weight:100;letter-spacing:4px}
+.logo p{color:#444;font-size:12px;letter-spacing:6px;margin-top:8px}
+.input-area{display:flex;gap:10px;margin-bottom:20px}
+.input-area input{flex:1;padding:15px 20px;background:#1a1a1a;border:1px solid #222;border-radius:12px;color:#fff;font-size:15px;outline:none}
+.input-area input::placeholder{color:#444}
+.input-area button{padding:15px 30px;background:#1a1a1a;color:#aaa;border:1px solid #222;border-radius:12px;cursor:pointer}
+.input-area button:hover{background:#222;color:#fff;border-color:#444}
+.output-box{background:#0d0d0d;border:1px solid #1a1a1a;border-radius:12px;padding:20px;min-height:150px;color:#aaa;font-size:14px;line-height:1.8;white-space:pre-wrap}
+.status{text-align:center;color:#222;font-size:11px;margin-top:15px}
+.status span{color:#333}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="logo"><h1>AI Assistant</h1><p>Powered by Free API</p></div>
+<div class="input-area">
+<input id="question" placeholder="Ask anything...">
+<button onclick="askAI()">Send</button>
+</div>
+<div class="output-box" id="output">Ready to assist...</div>
+<div class="status"><span>Model: GPT-3.5 Turbo</span></div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
