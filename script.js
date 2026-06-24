@@ -5,24 +5,30 @@ async function askAI() {
     out.innerText = '⏳ Thinking... (2-3 sec)';
     
     try {
-        const API_KEY = process.env.GROQ_API_KEY;
-        const url = "https://api.groq.com/openai/v1/chat/completions";
+        // 🔑 Google Gemini API Key
+        const API_KEY = "AQ.Ab8RN6IaqTp3D6x3G63D2F6CTLT7loNueJ3OoPqKvXPzyXIqwQ";
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
         
         const response = await fetch(url, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${API_KEY}`
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                model: "llama-3.3-70b-versatile",
-                messages: [{ role: 'user', content: q }],
-                temperature: 0.7
+                contents: [{
+                    parts: [{ text: q }]
+                }]
             })
         });
         
         const data = await response.json();
-        out.innerText = data.choices[0].message.content || '❌ No response';
+        
+        if (data.error) {
+            out.innerText = '❌ API Error: ' + data.error.message;
+            return;
+        }
+        
+        out.innerText = data.candidates[0].content.parts[0].text || '❌ No response';
     } catch(e) {
         out.innerText = '❌ Error: ' + e.message;
     }
@@ -33,4 +39,5 @@ document.getElementById('question').addEventListener('keypress', function(e) {
 });
 
 window.onload = function() {
-    document.getElementById('question').focus()
+    document.getElementById('question').focus();
+};
