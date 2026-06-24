@@ -33,5 +33,4 @@ document.getElementById('question').addEventListener('keypress', function(e) {
 });
 
 window.onload = function() {
-    document.getElementById('question').focus();
-};
+    document.getElementById('question').focus()
